@@ -119,7 +119,7 @@ Update `src/main/resources/application.properties`:
 
 ```properties
 # PostgreSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/vidicraft_db
+spring.datasource.url=jdbc:postgresql://localhost:5432/db
 spring.datasource.username=your_postgres_user
 spring.datasource.password=your_secure_password
 
@@ -127,7 +127,7 @@ spring.datasource.password=your_secure_password
 aws.accessKeyId=YOUR_ACCESS_KEY
 aws.secretKey=YOUR_SECRET_KEY
 aws.region=us-east-1
-aws.s3.bucketName=vidicraft-transcoded-assets
+aws.s3.bucketName=transcoded-assets
 ```
 ---
 ## Running Tests
