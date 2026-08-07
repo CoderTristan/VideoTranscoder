@@ -18,7 +18,6 @@ public class Video {
 
     private String title;
 
-    // Crucial: Store the raw unique S3 key name, NOT the full expiring URL
     @Column(nullable = false)
     private String s3Key;
 
