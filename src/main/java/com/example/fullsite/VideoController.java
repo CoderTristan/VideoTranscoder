@@ -51,7 +51,6 @@ public class VideoController {
 
         switch (action) {
             case "silence_trim":
-                // The Ultimate Fix: Force-deletes frozen video frames caused by silence removal
                 pb = new ProcessBuilder(
                         "ffmpeg", "-y", "-i", input.toString(),
                         "-filter_complex", "[0:v]fps=30[v_fps];[0:a]silenceremove=start_periods=1:start_threshold=-30dB:stop_periods=-1:stop_duration=0.3:stop_threshold=-30dB,asetpts=N/SR/TB[a_trimmed];[v_fps]mpdecimate,setpts=N/30/TB[v_trimmed]",
