@@ -35,36 +35,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
-        // 1. Quick exit if there's no Bearer token header
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Extract and trim the token string
         jwt = authHeader.substring(7).trim();
 
-        // 2. Defensive Check: Identify if the frontend accidentally sent garbage or empty data
         if (jwt.isEmpty() ||
                 jwt.equalsIgnoreCase("undefined") ||
                 jwt.equalsIgnoreCase("null") ||
                 !jwt.contains(".")) {
 
-            // Fail safely: Let the request proceed unauthenticated so Spring Security can block it properly
             filterChain.doFilter(request, response);
             return;
         }
 
-        // 3. Exception Safety Net: Try to parse the token. If it's corrupted, don't crash the API.
         try {
             userEmail = jwtService.extractUsername(jwt);
         } catch (Exception e) {
-            // Log it if necessary, then pass through unauthenticated
             filterChain.doFilter(request, response);
             return;
         }
-
-        // 4. Authenticate the user if the token claim is valid and no security context exists yet
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
