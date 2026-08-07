@@ -24,7 +24,7 @@ import java.util.UUID;
 public class S3Service {
 
     private final S3Template s3Template;
-    private final AwsCredentialsProvider credentialsProvider; // Injects your application.properties keys automatically
+    private final AwsCredentialsProvider credentialsProvider;
 
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
@@ -55,10 +55,8 @@ public class S3Service {
             s3Template.upload(bucketName, s3Key, inputStream, metadata);
         }
 
-        return s3Key; // Return the key to save in the DB
+        return s3Key; 
     }
-
-    // 2. NEW: Call this anytime you pull records from Postgres to show them on the frontend
     public String generatePresignedUrl(String s3Key) {
         try (S3Presigner presigner = S3Presigner.builder()
                 .credentialsProvider(credentialsProvider)
