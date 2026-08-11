@@ -1,11 +1,11 @@
 # Video Transcoder
-Cloud-native video processing platform built with Java 21, Spring Boot,
+Cloud-native video processing platform built with Java 21, React, Spring Boot,
 FFmpeg, PostgreSQL, and AWS S3.
 
 Designed to automate common video post-processing workflows that would
-otherwise require manually running FFmpeg commands.
-> *Processes uploaded videos through automated media pipelines including
-> silence trimming, compression, audio extraction, and proxy generation.
+require manually running FFmpeg commands.
+> *Processes uploaded videos through media pipelines including
+> silence trimming, compression and audio extraction.
 > Processing jobs are tracked in PostgreSQL and generated assets are
 > delivered through secure AWS S3 presigned URLs.*
 ---
@@ -22,7 +22,7 @@ otherwise require manually running FFmpeg commands.
 ## Architecture
 
 ```text
-Client
+Client using React
    │
    ▼
 Spring Boot REST API
@@ -39,24 +39,21 @@ Processing Service
 ---
 ## Engineering Challenges
 
-- Managed long-running video processing jobs asynchronously
+- Managed long-running video processing jobs
 - Generated temporary presigned URLs for secure asset delivery
 - Coordinated FFmpeg container execution from Spring Boot
 - Tracked processing metadata and job states in PostgreSQL
-- Designed a scalable pipeline architecture for future media workflows
 ---
 
 ## API Overview
 
 ### Process Video
 
-```http
+```
 POST /api/v1/video/process
 ```
 
 **Authentication:** Bearer JWT
-
-**Content-Type:** multipart/form-data
 
 | Parameter | Description |
 |-----------|-------------|
@@ -87,6 +84,7 @@ Returns generated media URLs associated with the authenticated user.
 ### Requirements
 
 - Java 21
+- React
 - PostgreSQL
 - FFmpeg
 - AWS S3 bucket
@@ -95,7 +93,7 @@ Returns generated media URLs associated with the authenticated user.
 
 ### Install FFmpeg
 
-```bash
+```
 # macOS
 brew install ffmpeg
 
