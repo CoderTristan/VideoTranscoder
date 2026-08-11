@@ -31,7 +31,6 @@ export const Register: React.FC<RegisterProps> = ({ onToggleToLogin }) => {
     setLoading(true);
 
     try {
-      // Fires to your permitted Spring Boot register endpoint
       const data = await apiRequest<AuthResponse>('/auth/register', 'POST', formData);
       login(data.token);
       alert('Account created successfully!');
