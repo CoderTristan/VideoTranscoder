@@ -11,7 +11,7 @@ interface LoginProps {
   onToggleToRegister: () => void;
 }
 
-
+// Login form that calls backend
 export const Login: React.FC<LoginProps> = ({ onToggleToRegister }) => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
