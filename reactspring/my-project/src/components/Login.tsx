@@ -99,7 +99,6 @@ export const Login: React.FC<LoginProps> = ({ onToggleToRegister }) => {
           </div>
         </form>
 
-        {/* 3. Added the footer element to switch over to the signup state */}
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
