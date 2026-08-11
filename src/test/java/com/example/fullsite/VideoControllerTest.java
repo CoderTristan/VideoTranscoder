@@ -34,11 +34,9 @@ public class VideoControllerTest {
 
     @BeforeEach
     public void setUp() {
-        // Build a stable dummy user profile
         fakeUser = new User();
         fakeUser.setId(42L);
 
-        // Build a safe dummy text stream file pretending to be an mp4
         fakeFile = new MockMultipartFile(
                 "file",
                 "test-video.mp4",
@@ -47,9 +45,6 @@ public class VideoControllerTest {
         );
     }
 
-    // ==========================================
-    // ENDPOINT 1: GET /my-videos
-    // ==========================================
 
     @Test
     public void testGetMyVideosSuccess() {
@@ -67,10 +62,6 @@ public class VideoControllerTest {
         assertEquals(2, response.getBody().size());
         assertEquals("https://s3.com/key1.mp4", response.getBody().get(0));
     }
-
-    // ==========================================
-    // ENDPOINT 2: POST /process (Actions)
-    // ==========================================
 
     @Test
     public void testProcessActionSilenceTrim() throws Exception {
