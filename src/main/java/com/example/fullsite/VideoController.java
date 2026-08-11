@@ -30,7 +30,7 @@ public class VideoController {
 
         return ResponseEntity.ok(liveUrls);
     }
-    // Most important
+    // Route that does most ffmpeg operations
     @PostMapping(
             value = "/process",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
